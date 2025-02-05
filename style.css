@@ -1,0 +1,619 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Tahoma, Verdana, sans-serif;
+    background-color: #008080; /* Teal desktop background */
+    position: relative;
+    transition: background-image 4s ease; /* Smooth transition */
+    overflow: hidden; /* Prevent scrolling */
+    /*cursor: none; /* Hide the default cursor */
+}
+/*
+#custom-cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    pointer-events: none; 
+    transform: translate(-50%, -50%);
+    z-index: 1000; 
+    background-color: rgba(255, 255, 255, 0.7); 
+}
+*/
+.particle {
+    position: absolute;
+    width: 8px; /* Smaller size for pixelated look */
+    height: 8px;
+    background-color: white; /* Default color (overridden by JS) */
+    border-radius: 0; /* Remove rounded corners for a pixelated look */
+    pointer-events: none;
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+    z-index: 999;
+}
+
+
+
+#desktop {
+    display: grid;
+    grid-auto-flow: column; /* Ensure icons fill top to bottom first */
+    grid-template-rows: repeat(auto-fill, 120px); /* Each row is 100px tall */
+    grid-gap: 0px 20px; /* 20px gap between rows (vertical), 50px between columns (horizontal) */    
+    padding: 20px;
+    justify-content: start; /* Ensure the icons stay aligned to the left */
+    height: 100vh; /* Set height to 100% of the viewport */
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    font-weight: bold; 
+
+}
+
+.icon-image {
+    width: 50px;
+    height: 50px;
+}
+
+
+/* old code!
+
+.desktop-icon {
+    width: 80px;
+    margin: 20px;
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    position: absolute;
+    cursor: pointer;
+    font-weight: bold; 
+}
+
+.icon-image {
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.desktop-icon:nth-child(1) {
+    top: 50px;
+    left: 50px;
+}
+.desktop-icon:nth-child(2) {
+    top: 150px;
+    left: 50px;
+}
+.desktop-icon:nth-child(3) {
+    top: 250px;
+    left: 50px;
+}
+.desktop-icon:nth-child(4) {
+    top: 350px;
+    left: 50px;
+}
+.desktop-icon:nth-child(5) {
+    top: 450px;
+    left: 50px;
+}
+.desktop-icon:nth-child(6) {
+    top: 550px;
+    left: 50px;
+}
+*/
+
+/* Window Styles */
+.window {
+    display: none; /* Initially hidden */
+    width: 400px;
+    height: 300px;
+    border: 2px solid #4a708b;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    background-color: #e4e4e4; /* Light gray background */
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+.window-header {
+    background: linear-gradient(180deg, #0095ff, #004f9e);
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #004f9e; /* Stronger border */
+}
+
+.close-button {
+    background-color: #ff5b5b;
+    border: none;
+    color: white;
+    padding: 0 6px;
+    cursor: pointer;
+}
+
+.window-content {
+    padding: 10px;
+    background-color: #ffffff; /* White background for content */
+}
+
+#text-file-content {
+    white-space: pre-wrap; /* Maintains whitespace and wraps text */
+    overflow: auto; /* Adds a scrollbar if content overflows */
+    max-height: calc(100% - 50px); /* Adjust height according to your window */
+}
+
+
+/* Taskbar */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #0a4297;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#start-button {
+    background-color: #6c9bd1;
+    border: 1px solid #ffffff;
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Start Menu */
+#start-menu {
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    width: 200px;
+    background-color: #e4e4e4; /* Light gray background */
+    border: 2px solid #4a708b;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+#start-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#start-menu ul li {
+    padding: 8px;
+    border-bottom: 1px solid #cccccc;
+    cursor: pointer;
+}
+
+#start-menu ul li:hover {
+    background-color: #d0d0d0; /* Highlight color for hover */
+}
+
+/* Image Grid in Images Folder */
+#images-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+    max-height: 80vh; /* Limit the height of the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: Adds a border for visibility */
+}
+
+
+#images-content img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #cccccc; /* Border around images */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Slight shadow */
+}
+
+#memes-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+    max-height: 80vh; /* Limit the height of the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: Adds a border for visibility */
+}
+
+
+#memes-content img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #cccccc; /* Border around images */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Slight shadow */
+}
+
+/* Footer Styles */
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0a4297;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+.footer-socials {
+    display: inline-block;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 5px;
+}
+
+/* Add this to style.css for smooth transitions */
+#shutdown-message {
+    transition: opacity 1s ease-in-out;
+}
+
+/* DVD Screensaver window styles */
+#dvd-screensaver {
+    width: 400px;
+    height: 300px;
+    background-color: black;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    display: none;
+}
+
+#dvd-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#dvd-container img {
+    position: absolute;
+    width: 100px; /* Adjust the size of the bouncing image */
+}
+
+/* Email Window */
+#email-window {
+    width: 400px;
+    height: 400px;
+    background-color: #f0f0f0;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    display: none;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#email-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#email-form label {
+    margin: 10px 0 5px 0;
+}
+
+#email-form input, #email-form textarea {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: calc(100% - 10px);
+}
+
+#email-form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#email-form button:hover {
+    background-color: #45a049;
+}
+
+/* Snake Game styles */
+#snake-game {
+    width: 400px;
+    height: 300px;
+    background-color: black;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    display: none;
+}
+
+#snake-canvas {
+    border: 1px solid #4a708b; /* Border around the canvas */
+}
+
+/* Music Player Window Styles */
+#radio {
+    width: 300px; /* Adjust width as needed */
+    height: auto; /* Height will adjust based on content */
+    background: rgba(255, 255, 255, 0.9); /* Light background with transparency */
+    border: 2px solid #0078d7; /* Soft blue border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Header Styles */
+.close-button:hover {
+    background: #ff2a2a; /* Darker red on hover */
+}
+
+
+/* Audio Player Styles */
+.audio-player {
+    width: 100%; /* Full width */
+    outline: none; /* Remove outline */
+    background: rgba(240, 240, 240, 0.8); /* Light gray background */
+}
+
+/* Additional Hover Effects for Audio Player */
+.audio-player::-webkit-media-controls {
+    background: rgba(255, 255, 255, 0.9); /* Transparent controls */
+}
+
+.audio-player::-webkit-media-controls-enclosure {
+    background: rgba(255, 255, 255, 0.9); /* Controls background */
+}
+
+/* Custom Controls Styles */
+.custom-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Button Styles */
+.custom-controls button {
+    background: #0078d7; /* Blue background */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px; /* Rounded corners */
+    margin: 0 5px; /* Space between buttons */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.custom-controls button:hover {
+    background: #0056a3; /* Darker blue on hover */
+}
+
+/* Song Title Styles */
+.song-title {
+    text-align: center;
+    font-size: 16px;
+    color: #333; /* Dark color for text */
+    margin-top: 10px; /* Space above the title */
+}
+.clock {
+    color: white; /* Change to your desired text color */
+    margin-left: auto; /* Pushes the clock to the right */
+    padding: 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Change font size if desired */
+    
+}
+
+#clock {
+    display: block !important;
+}
+
+
+body.background-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#clippy-window {
+    position: absolute;
+    bottom: 100px; /* Adjust as needed */
+    right: 50px; /* Adjust as needed */
+    background: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+    border: 1px solid rgba(0, 0, 0, 0.5); /* Border with 50% opacity */
+    padding: 10px;
+    border-radius: 8px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+}
+
+#overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000; /* Sit on top */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+}
+#overlay h2 {
+    margin-bottom: 20px; /* Spacing below the heading */
+}
+#overlay img {
+    max-width: 90%; /* Limit width to 90% of the overlay */
+    max-height: 80%; /* Limit height to 80% of the overlay */
+    object-fit: contain; /* Maintain aspect ratio without cropping */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+}
+.chatroom-content {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    /*width: 300px;*/
+    border: 1px solid #a9a9a9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(180deg, #dfefff, #ffffff);
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.chatroom-header {
+    background-color: #0078d7;
+    color: white;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatroom-header span {
+    cursor: pointer;
+    background-color: #ff5b5b;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.chat-display {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background: #ffffff;
+    border-top: 1px solid #a9a9a9;
+    border-bottom: 1px solid #a9a9a9;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.chat-message.user {
+    background-color: #0078d7;
+    color: white;
+    text-align: right;
+}
+
+.chat-message.other {
+    background-color: #e0e0e0;
+    color: black;
+    text-align: left;
+}
+
+.chat-input-container {
+    display: flex;
+    border-top: 1px solid #a9a9a9;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+.chat-input-container textarea {
+    flex-grow: 1;
+    resize: none;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #a9a9a9;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.chat-input-container button {
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-input-container button:hover {
+    background-color: #0056a3;
+}
+
+#canvas-app {
+    width: 650px;
+    height: 500px;
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    background-color: #ffffff; /* White background */
+    border: 2px solid #4a708b;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    font-family: Tahoma, Verdana, sans-serif;
+    display: none; /* Initially hidden */
+}
+
+#canvas-app .window-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+#canvas-app canvas {
+    border: 2px solid black;
+    cursor: crosshair;
+}
+
+#canvas-app .toolbar {
+    margin: 10px;
+}
+
+#heartContainer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    animation-duration: 4s ease-in-out;
+    opacity: 0.8;
+}
+
+#drawings-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+    max-height: 80vh; /* Limit the height of the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: Adds a border for visibility */
+}
+
+#drawings-content img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: 1px solid #cccccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel = "icon" href =  "images/desctop-icon.png" type = "image/x-icon">
+
+</head>
+<body>
+
+      <!-- Overlay element -->
+      <div id="overlay">
+        <img src="meme.png" alt="Open on PC"> <!-- Replace with your image URL -->
+    </div>
+
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" onclick="openWindow('my-computer')">
+            <img src="images/desktop-icons/puter-icon.png" alt="My Computer" class="icon-image">
+            <span>My 'puter</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('recycle-bin')">
+            <img src="images/desktop-icons/trash-icon.png" alt="Recycle Bin" class="icon-image">
+            <span>Recycle Bin</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('images-folder')">
+            <img src="images/desktop-icons/folder.png" alt="Images Folder" class="icon-image">
+            <span>Gallery</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('drawings-folder')">
+            <img src="images/desktop-icons/folder.png" alt="Images Folder" class="icon-image">
+            <span>Drawings</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('memes-folder')">
+            <img src="images/desktop-icons/folder.png" alt="Images Folder" class="icon-image">
+            <span>Memes</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('dvd-screensaver')">
+            <img src="images/desktop-icons/dvd-icon.png" alt="DVD Screensaver" class="icon-image">
+            <span>DVD Screensaver</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('notes')">
+            <img src="images/desktop-icons/notes.png" alt="Text File" class="icon-image">
+            <span>Notes</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('coffee')">
+            <img src="images/desktop-icons/coffee.png" alt="Coffee" class="icon-image"> 
+            <span>Buy me a Coffee!</span>
+        </div>
+        <div class="desktop-icon" onclick="openWindow('snake')">
+            <img src="images/desktop-icons/snake.png" alt="Snake" class="icon-image">
+            <span>Snake</span>
+        </div>        
+        <div class="desktop-icon" onclick="openWindow('radio')">
+            <img src="images/desktop-icons/radio.png" alt="radio" class="icon-image">
+            <span>Radio</span>
+        </div>        
+        <div id="clippy-icon" class="desktop-icon" onclick="toggleClippy()">
+            <img src="images/apps/clippy/clippy.png" alt="Clippy" class="icon-image">
+            <span>Clippy</span>
+        </div>
+        <!-- 
+            <div class="desktop-icon" onclick="openWindow('message-board')">
+                <img src="message-board.png" alt="Message Board" class="icon-image">
+                <span>Message Board</span>
+            </div>
+        -->
+        <div class="desktop-icon">
+            <a href="/julz/index.html" >
+                <img src="images/desktop-icons/indexIcon.jpg" alt="julias website" class="icon-image">
+            <span>julz cafe</span>
+            </a>
+        </div>
+        
+        <div class="desktop-icon" onclick="openWindow('canvas-app')">
+            <img src="images/desktop-icons/canvas-icon.png" alt="Canvas App" class="icon-image">
+            <span>Canvas.exe</span>
+        </div>
+        <!--
+
+        <div class="desktop-icon">
+            <img src="images/desktop-icons/fav.png" alt="Canvas App" class="icon-image">
+            <span>love.exe</span>
+        
+
+        <button id="heartButton">Click Me</button>
+        <div id="heartContainer"></div>
+                
+        
+        </div>
+        -->
+
+        
+        <!-- Windows -->
+        <div class="window" id="my-computer">
+            <div class="window-header">
+                My 'puter
+                <span class="close-button" onclick="closeWindow('my-computer')">X</span>
+            </div>
+            <div class="window-content">
+                <p>This is the My Computer window. You can add files or folders here!</p>
+            </div>
+        </div>
+
+       
+        <div class="window" id="recycle-bin">
+            <div class="window-header">
+                Recycle Bin
+                <span class="close-button" onclick="closeWindow('recycle-bin')">X</span>
+            </div>
+            <div class="window-content">
+                <a href="/website/skate/index.html" target="_blank">Skate3D</a>
+            </div>
+        </div>
+
+        <!-- Chatroom Window -->
+        <div class="window" id="message-board" style="display: none;">
+            <div class="chatroom-content">
+                <div class="chatroom-header">
+                    Live Messenger
+                    <span class="close-button" onclick="closeWindow('message-board')">X</span>
+                </div>
+                <div id="chat-display" class="chat-display"></div>
+                <div class="chat-input-container">
+                    <textarea id="chat-input" placeholder="Type your message..."></textarea>
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Images Folder Window -->
+        <div class="window" id="images-folder">
+            <div class="window-header">
+                Images Folder
+                <span class="close-button" onclick="closeWindow('images-folder')">X</span>
+            </div>
+            <div class="window-content" id="images-content">
+                <!-- Images will be dynamically added here -->
+            </div>
+        </div>
+        
+        <!-- Drawings Folder Window -->
+        <div class="window" id="drawings-folder">
+            <div class="window-header">
+                Drawings Folder
+                <span class="close-button" onclick="closeWindow('drawings-folder')">X</span>
+            </div>
+            <div class="window-content" id="drawings-content">
+                <!-- Drawings will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Memes Folder Window -->
+        <div class="window" id="memes-folder">
+            <div class="window-header">
+                memes Folder
+                <span class="close-button" onclick="closeWindow('memes-folder')">X</span>
+            </div>
+            <div class="window-content" id="memes-content">
+                <!-- Images will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Full Size Image Window -->
+        <div class="window" id="full-size-image" style="display: none;">
+            <div class="window-header">
+                Full Size Image
+                <span class="close-button" onclick="closeWindow('full-size-image')">X</span>
+            </div>
+            <div class="window-content">
+                <img id="full-size-image-element" src="" alt="Full Size" style="width: 100%; height: auto;">
+            </div>
+        </div>
+
+        <!-- DVD Screensaver Window -->
+        <div class="window" id="dvd-screensaver" style="display:none;">
+            <div class="window-header">
+                DVD Screensaver
+                <span class="close-button" onclick="closeWindow('dvd-screensaver')">X</span>
+            </div>
+            <div id="dvd-container" style="position: relative; width: 100%; height: 100%; background-color: black;">
+                <img id="dvd-logo" src="images/apps/dvd/custom-logo.png" alt="Custom Logo" style="position:absolute; width:100px; height:auto;">
+            </div>
+        </div>
+        
+        <!-- Notes Window -->
+        <div class="window" id="notes" style="display: none;">
+            <div class="window-header">
+                Notes
+                <span class="close-button" onclick="closeWindow('notes')">X</span>
+            </div>
+            <div class="window-content">
+                <pre id="text-file-content">This is the content of your notes. Add your text here, or load from the file if needed.</pre>
+            </div>
+        </div>
+
+        <!-- Snake Game Window -->
+        <div class="window" id="snake" style="display:none;">
+            <div class="window-header">
+                Snake Game
+                <span class="close-button" onclick="closeWindow('snake')">X</span>
+            </div>
+            <div id="snake-container" style="position: relative; width: 400px; height: 300px; background-color: black;">
+                <canvas id="snake-canvas" width="400" height="300"></canvas>
+            </div>
+        </div>
+
+        <!-- Music Player Window -->
+        <div class="window" id="radio" style="display:none;">
+            <div class="window-header">
+                Music Player
+                <span class="close-button" onclick="closeWindow('radio')">X</span>
+            </div>
+            <div class="window-content">
+                <audio id="audio-player" src="radio/Electronic_Onslaught_short.wav"></audio>
+                <div id="song-title" class="song-title">Now Playing: Your Song Title</div>
+                <div class="custom-controls">
+                    <button id="play-button" onclick="togglePlay()">Play</button>
+                    <button id="pause-button" onclick="pauseMusic()" style="display:none;">Pause</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clippy Window -->
+        <div class="window" id="clippy-window" style="display: none;">
+            <div class="window-content">
+                <img src="images/apps/clippy/clippy.png" alt="Clippy" style="width: 100px; height: auto;">
+                <div id="clippy-speech">Hello! I'm Clippy!</div>
+                <button onclick="closeClippy()">Close</button>
+            </div>
+        </div>
+
+        <audio id="clippy-sound" src="sounds/clippy.mp3" preload="auto"></audio>
+    </div>
+
+
+    <!-- Email Window -->
+    <div class="window" id="email-window">
+        <div class="window-header">
+            Compose Email
+            <span class="close-button" onclick="closeWindow('email-window')">X</span>
+        </div>
+        <div class="window-content">
+            <form id="email-form">
+                <input type="hidden" id="email-recipient" value="lukdz@yahoo.de">
+                <label for="email-subject">Subject:</label>
+                <input type="text" id="email-subject" placeholder="Enter subject" required><br>
+                <label for="email-body">Message:</label><br>
+                <textarea id="email-body" placeholder="Write your message here..." rows="8" required></textarea><br>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="window" id="canvas-app" style="display: none;">
+        <div class="window-header">
+            Canvas.exe
+            <span class="close-button" onclick="closeWindow('canvas-app')">X</span>
+        </div>
+        <div class="window-content">
+            <div class="toolbar">
+                <input type="color" id="colorPicker" value="#000000">
+                <input type="range" id="brushSize" min="1" max="10" value="3">
+                <button onclick="clearCanvas()">Clear</button>
+                <button onclick="downloadImage()">Save</button>
+                <button onclick="enableFill()">Fill</button>
+            </div>
+            <canvas id="paintCanvas" width="600" height="400"></canvas>
+        </div>
+    </div>
+    
+
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <button id="start-button" onclick="toggleStartMenu()">Start</button>
+        <div id="taskbar-items">
+            <a href="" target="_blank"><img src="images/taskbar-icons/facebook.png" alt="Facebook" class="social-icon"></a>
+
+            <a href="" target="_blank"><img src="images/taskbar-icons/twitter.png" alt="Twitter" class="social-icon"></a>
+            
+            <a href="https://www.instagram.com/c0d3crush/" target="_blank"><img src="images/taskbar-icons/instagram.png" alt="Instagram" class="social-icon"></a>
+
+            <a href="https://github.com/C0d3Crush" target="_blank"><img src="images/taskbar-icons/github.png" alt="GitHub" class="social-icon"></a>
+
+            <a href="https://open.spotify.com/user/lukasxi" target="_blank"><img src="images/taskbar-icons/spotify.png" alt="Spotify" class="social-icon"></a>
+
+            <a href="https://soundcloud.com/r0b0t1k_w4rfar3" target="_blank"><img src="images/taskbar-icons/soundcloud.png" alt="soundcloud" class="social-icon"></a>
+
+            <a href="" target="_blank"><img src="images/taskbar-icons/discord.png" alt="discord" class="social-icon"></a>
+
+            <a href="" target="_blank"><img src="images/taskbar-icons/pintrest.png" alt="discord" class="social-icon"></a>
+
+            <a href="mailto:lukdz@yahoo.de"><img src="images/taskbar-icons/email.png" alt="Email" class="social-icon" onclick="openWindow('email-window')"></a>
+
+        </div>
+        <div id="clock" class="clock" onclick="handleClockClick()">
+
+        </div> <!-- Clock div -->
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu">
+        <ul>
+            <li>Programs</li>
+            <li>Documents</li>
+            <li>Settings</li>
+            <li>Search</li>
+            <li>Help</li>
+            <li>Run...</li>
+            <li id="shutdown" onclick="shutdown()">Shut Down</li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

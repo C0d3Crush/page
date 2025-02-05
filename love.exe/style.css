@@ -1,0 +1,13 @@
+#heartContainer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    animation-duration: 4s ease-in-out;
+    opacity: 0.8;
+}
