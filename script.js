@@ -159,7 +159,8 @@ function loadDrawings() {
         '/images/drawings/drawing1.jpg',
         '/images/drawings/drawing2.jpg',
         '/images/drawings/drawing3.jpg',
-        '/images/drawings/drawing4.jpg'
+        '/images/drawings/drawing4.jpg',
+        '/images/drawings/drawing5.jpg'
     ];
 
     drawings.forEach(drawing => {
